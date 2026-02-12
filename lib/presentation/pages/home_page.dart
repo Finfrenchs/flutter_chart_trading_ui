@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../data/domain/market_symbols.dart';
 import '../../data/services/mock_candle_service.dart';
 import '../widgets/mini_chart.dart';
 import 'stock_detail_page.dart';
@@ -13,9 +14,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(title: const Text("Market Watch"), centerTitle: false),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
-        itemCount: 10,
+        itemCount: MarketSymbols.list.length,
+
         itemBuilder: (_, i) {
-          final symbol = "BBCA$i";
+          final symbol = MarketSymbols.list[i];
+
           final candles = MockCandleService.generateCandles(40);
 
           final last = candles.last.close;
